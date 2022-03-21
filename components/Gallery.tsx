@@ -19,7 +19,7 @@ const Gallery: React.FC = () => {
     const image = useSelector((state: RootState) => state.images.images)
     const favImage = useSelector((state: RootState) => state.images.favoriteImages)
     const loading = useSelector((state: RootState) => state.app.loading)
-    const arr = favImage.map(item => item.id)
+    const arrImage = favImage.map(item => item.id)
 
     if (loading) {
         return (
@@ -35,7 +35,7 @@ const Gallery: React.FC = () => {
             renderItem={({item}) => (
                 <TouchableOpacity style={styles.itemList} onPress={() => navigation.navigate('ImageScreen', item)}>
                     <Image source={{uri: item.src.small}} style={styles.galleryImg} />
-                    {arr.filter(el => el === item.id)[0]?
+                    {arrImage.filter(el => el === item.id)[0]?
                         <Image source={require('../assets/heart.png')} style={styles.img}/> : null
                     }
                 </TouchableOpacity>
